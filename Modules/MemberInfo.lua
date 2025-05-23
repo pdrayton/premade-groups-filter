@@ -27,6 +27,7 @@ function PGF.PutSearchResultMemberInfos(resultID, searchResultInfo, env)
     -- init to zero
     env.ranged = 0
     env.melees = 0
+    env.brez = 0
     local specs = PGF.GetAllSpecializations()
     for specID, specInfo in pairs(specs) do
         env[specInfo.specKeyword] = 0
@@ -50,6 +51,9 @@ function PGF.PutSearchResultMemberInfos(resultID, searchResultInfo, env)
             env[specInfo.roleClassKeyword] = env[specInfo.roleClassKeyword] + 1
             env[specInfo.classRoleKeyword] = env[specInfo.classRoleKeyword] + 1
             env[specInfo.armor] = env[specInfo.armor] + 1
+            if specInfo.hasBattleResurrection then
+                env.brez = env.brez + 1
+            end
         end
     end
 
